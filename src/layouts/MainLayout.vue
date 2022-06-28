@@ -1,0 +1,18 @@
+<template>
+  <q-layout view="lHh lpr fFf">
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script>
+
+export default {
+  name: 'MainLayout',
+  components: {},
+  data () {
+    return {}
+  }
+}
+</script>
