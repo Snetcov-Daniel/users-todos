@@ -1,32 +1,48 @@
 <template>
     <div>
-        
+      <button @click="filterTasksByUsers">Load tasks</button>
+      <TodoCheckbox :userTasks="userTasks" ></TodoCheckbox>
     </div>
 </template>
 
 <script>
+import TodoCheckbox from './TodoCheckbox.vue'
+
 export default {
     name: 'TodoList',
-
+    components: {
+      TodoCheckbox
+    },
     data() {
         return {
-            traits: []
+            userTasks: [],
         };
     },
 
     mounted() {
-        
+       this.$http.get('https://jsonplaceholder.typicode.com/todos')
+          .then(Response => {
+            return Response.json()
+          })
+          .then(tasks => {
+            this.userTasks = tasks
+          })
     },
 
     methods: {
-        
+
+      filterTasksByUsers (userId) {
+        const tasksByUserId = this.userTasks.filter((item) => {
+            if(item.userId === userId) {
+              return item
+            }
+        })
+
+        this.userTasks = tasksByUserId
+      }
     },
     created() {
-      this.traits = this.$resource('https://jsonplaceholder.typicode.com/todos');
+      this.userTasks = this.$resource('https://jsonplaceholder.typicode.com/todos');
     },
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>
