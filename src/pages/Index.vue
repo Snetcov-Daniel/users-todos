@@ -1,11 +1,19 @@
 <template>
   <q-page>
-    <h1>Onboarding tracker</h1>
+    <Users></Users>
+    <Todo-list></Todo-list>
   </q-page>
 </template>
 
 <script>
+import Users from "../components/Users";
+import TodoList from "../components/TodoList";
+
 export default {
-  name: "PageIndex"
+  name: "PageIndex",
+  components: {
+    Users,
+    TodoList
+  }
 }
 </script>
