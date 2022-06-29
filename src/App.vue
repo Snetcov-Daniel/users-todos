@@ -1,7 +1,7 @@
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+    <div id="q-app">
+        <router-view />
+    </div>
 </template>
 
 <script>
@@ -11,13 +11,6 @@ import VueResource from "vue-resource";
 Vue.use(VueResource);
 
 export default {
-  name: 'App',
-  // created() {
-  //     this.resource = this.$resource('https://jsonplaceholder.typicode.com/users');
-  //     this.resource.get()
-  //       .then(response => {
-  //         console.log(response.body);
-  //       })
-  // }
+    name: 'App'
 }
 </script>

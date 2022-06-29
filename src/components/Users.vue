@@ -1,32 +1,40 @@
 <template>
-    <div>
-        
+    <div class="q-pa-md" style="max-width: 350px">
+        <q-list bordered separator>
+            <q-item clickable v-ripple v-for="user in users" :key="user.id">
+                <q-item-section>{{ user.name }}</q-item-section>
+            </q-item>
+        </q-list>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Users',
 
     data() {
         return {
-            users: []
+            users: [],
+
         };
     },
 
     mounted() {
-        
+
     },
 
     methods: {
-        
+
     },
     created() {
-      this.users = this.$resource('https://jsonplaceholder.typicode.com/users');
-  },
+        this.resource = this.$resource('https://jsonplaceholder.typicode.com/users');
+        this.resource.get().then(response => console.log('response >> ', response.body.forEach(element => {
+            this.users.push(element)
+        })))
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
