@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button @click="filterTasksByUsers">Load tasks</button>
+<!--      <button @click="filterTasksByUsers(userId)">Load tasks</button>-->
       <TodoCheckbox :userTasks="userTasks" ></TodoCheckbox>
     </div>
 </template>
@@ -16,6 +16,7 @@ export default {
     data() {
         return {
             userTasks: [],
+            userId: this.$router.currentRoute.params['id']
         };
     },
 
@@ -26,19 +27,23 @@ export default {
           })
           .then(tasks => {
             this.userTasks = tasks
+              console.log(tasks )
           })
+        this.filterTasksByUsers(userId)
+
     },
 
     methods: {
 
       filterTasksByUsers (userId) {
+          console.log(userId)
         const tasksByUserId = this.userTasks.filter((item) => {
             if(item.userId === userId) {
               return item
             }
         })
-
         this.userTasks = tasksByUserId
+        return tasksByUserId
       }
     },
     created() {
