@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <div class="q-gutter-sm" v-for="item in userTasks" :disabled="tasksDone.includes(item.title)"
-    :key="item.id">
-      <input type="checkbox" v-model="tasksDone" :id="item.id" :value="item.title" />
-      <label :for="item.id" >{{ item.title }}</label>
+    <div>
+        <ul class="q-gutter-sm" v-for="item in userTasks" :key="item.id" >
+            <q-checkbox
+                color="teal-10"
+                v-model="tasksDone"
+                :val="item.title"
+                :label="item.title"
+                :disable="tasksDone.includes(item.title)" />
+        </ul>
     </div>
-  </div>
 </template>
 <script>
 export default {
-  props: {
-    userTasks: Array
-  },
-  data() {
-    return {
-      tasksDone: []
-    }
-  },
+    props: {
+        userTasks: Array,
+    },
+    data() {
+        return {
+            tasksDone: [],
+        };
+    },
 };
 </script>
