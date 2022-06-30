@@ -1,19 +1,23 @@
 <template>
   <q-page>
-    <Users></Users>
-    <Todo-list></Todo-list>
+      <Users></Users>
+
   </q-page>
 </template>
 
 <script>
-import Users from "../components/Users";
-import TodoList from "../components/TodoList";
+
+// import TodoList from "components/TodoList";
+import Users from "components/Users";
 
 export default {
   name: "PageIndex",
   components: {
-    Users,
-    TodoList
-  }
+      // TodoList,
+      Users
+  },
+    methods:{
+
+    }
 }
 </script>

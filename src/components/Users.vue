@@ -30,7 +30,7 @@ export default {
         this.resource = this.$resource('https://jsonplaceholder.typicode.com/users');
         this.resource.get().then(response => console.log('response >> ', response.body.forEach(element => {
             this.users.push(element)
-            // console.log(element)
+            // console.log("Element", element)
         })))
     },
 };

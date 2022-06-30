@@ -1,4 +1,7 @@
+import Vue from "vue";
 import Users from "components/Users";
+import Index from "src/pages";
+import User from "components/User";
 
 const routes = [
   {
@@ -14,7 +17,7 @@ const routes = [
   },
     {
         path: '/:id',
-        component: Users
+        component: () => import('components/User')
     }
 ]
 

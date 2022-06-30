@@ -1,18 +1,20 @@
 <template>
     <div>
-<!--      <button @click="filterTasksByUsers(userId)">Load tasks</button>-->
-      <TodoCheckbox :userTasks="userTasks" ></TodoCheckbox>
+        <TodoCheckbox :userTasks="userTasks"></TodoCheckbox>
     </div>
 </template>
 
 <script>
-import TodoCheckbox from './TodoCheckbox.vue'
+import TodoCheckbox from "./TodoCheckbox.vue";
 
 export default {
-    name: 'TodoList',
+
+    name: "TodoList",
+
     components: {
-      TodoCheckbox
+        TodoCheckbox,
     },
+
     data() {
         return {
             userTasks: [],
@@ -21,33 +23,33 @@ export default {
     },
 
     mounted() {
-       this.$http.get('https://jsonplaceholder.typicode.com/todos')
-          .then(Response => {
-            return Response.json()
-          })
-          .then(tasks => {
-            this.userTasks = tasks
-              console.log(tasks )
-          })
+
+        this.tasksFromDataBase.get().then((response) => {
+            return (this.userTasks = response.data);
+        });
         this.filterTasksByUsers(userId)
 
     },
-
     methods: {
 
-      filterTasksByUsers (userId) {
-          console.log(userId)
-        const tasksByUserId = this.userTasks.filter((item) => {
-            if(item.userId === userId) {
-              return item
+      filterTasksByUsers (userId = 1) {
+          this.$emit("filterTasksByUsers",() =>{
+              console.log(userId)
+              const tasksByUserId = this.userTasks.filter((item) => {
+                  if(item.userId === userId) {
+                      return item
+                  }
+              })
+              this.userTasks = tasksByUserId;
+              console.log(tasksByUserId)
+          })
             }
-        })
-        this.userTasks = tasksByUserId
-        return tasksByUserId
-      }
     },
+
     created() {
-      this.userTasks = this.$resource('https://jsonplaceholder.typicode.com/todos');
+        this.tasksFromDataBase = this.$resource(
+            "https://jsonplaceholder.typicode.com/todos"
+        );
     },
 };
 </script>
