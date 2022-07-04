@@ -1,24 +1,18 @@
-import Vue from "vue";
-import Users from "components/Users";
-import Index from "src/pages";
-import User from "components/User";
+import User from '../pages/UserPage.vue'
 
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: User,
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', redirect: '/users/1' },
+      { path: '/users/:id', component: User }
     ]
   },
   {
     path: '*',
     component: () => import('pages/Error404.vue')
   },
-    {
-        path: '/:id',
-        component: () => import('components/User')
-    }
 ]
 
 export default routes

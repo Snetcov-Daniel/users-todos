@@ -16,6 +16,16 @@ Vue.use(Vuex)
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
+    state: {
+        tasks: [],
+        tasksDone: ['Take a shower','Do project'],
+        tasksNotDone: [],
+    },
+    getters: {
+        getTasksDone(state) {
+            return state.tasksDone;
+        }
+    },
     modules: {
       // example
     },
